@@ -1,4 +1,4 @@
-[Русский](README.md) · English
+English · [Русский](README.md)
 
 # A paragraph-long thought hits the speed of your fingers — and reaches the agent half the length it was
 
@@ -13,6 +13,12 @@ claude plugin install jadlis-voice@jadlis
 After that one command — `/jadlis-voice` — and the agent walks you through the setup step by step.
 This is the third step of the Jadlis route: voice comes after the agent itself is installed.
 
+![Speech goes through transcription and clean-up and lands as finished text in the active field](docs/img/hero-jadlis-voice.webp)
+
+In words: speech on the left, transcription and clean-up by a second model in the middle, the
+finished text in the field your cursor is in on the right; below, the second branch — copied text
+read out loud.
+
 This is my workbench published as it is, not a product: whatever I stopped using, I removed.
 
 ## Before → after
@@ -26,6 +32,17 @@ This is my workbench published as it is, not a product: whatever I stopped using
 | **A long text you cannot face reading.** You read it with your eyes, or you do not read it at all. | You ask for a summary — and lose the original. | Copy it → tap right Option → listen to the whole original; tap again and it stops. |
 
 ## How it works
+
+![A key tap, the replacement dictionary, transcription, clean-up by a second model, text in the field](docs/img/how-jadlis-voice.webp)
+
+Going in — your speech and a tap on right Command; the provider accounts and the keys are yours to
+create, not the plugin's.
+Inside — the dictionary fires before the clean-up, and the clean-up fixes stumbles and punctuation
+without rewriting the meaning.
+Coming out — finished text in the field your cursor is in.
+
+In words: key tap → replacement dictionary → transcription → clean-up by a second model → text in
+the active field.
 
 Speech goes through two cloud steps and comes back as text where your cursor is:
 
@@ -44,6 +61,41 @@ The full walkthrough is [docs/tier/README.en.md](docs/tier/README.en.md); the co
 full is [docs/prompt.txt](docs/prompt.txt).
 
 ## Installing and the first run
+
+**a) Text to paste to the agent.** Copy it whole into a Claude Code chat:
+
+```
+You are the installer. Put the jadlis-voice plugin from the jadlis marketplace on this Mac.
+Run exactly these commands, verbatim, abbreviating nothing:
+1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+2. claude plugin install jadlis-voice@jadlis
+3. claude plugin list — show me the jadlis-voice line and its version.
+Then tell me in one line: type /jadlis-voice — the plugin walks the rest of the steps itself.
+The ElevenLabs and Anthropic keys are asked for by the plugin on its own step, with hidden
+input: never print their values and never put them into a command.
+Before each command show it to me in full and wait for a yes. If I say no, do not run it,
+tell me what you skipped and move on.
+If a command returns an error — stop, show the output, do not go on to the next one.
+```
+
+**b) The commands by hand.**
+
+```
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin install jadlis-voice@jadlis
+claude plugin list
+```
+
+The first command installs nothing — it adds the marketplace. Only the second installs, and it is
+removed by one line: `claude plugin uninstall jadlis-voice@jadlis --keep-data`.
+
+**c) The short command.** Open Claude Code and type:
+
+```
+/jadlis-voice
+```
+
+Not found — check the name with `claude plugin list`.
 
 The `/jadlis-voice` command walks seven steps, one action per turn and always with your permission:
 
@@ -93,7 +145,8 @@ your machine.
 Spokenly is third-party freeware with an optional Pro subscription; its authors have nothing to do
 with this plugin.
 
-**Verified where I work:** my Mac, my keys. Where else this works — [уточнить].
+**Verified where I work:** my Mac, my keys. macOS only: the loop is built out of the Spokenly cask,
+the Keychain and a Karabiner rule; I have tested no other system.
 
 **Terms of use.** There is no license: all rights reserved by the author. You may read it and use it
 personally. Commercial use, republishing and bundling it into your own products — by arrangement
