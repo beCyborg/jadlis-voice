@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "jadlis-voice",
+  "version": "1.0.0",
+  "displayName": "jadlis-voice — голосовой контур: диктовка с AI-обработкой и озвучка буфера",
+  "description": "Третий шаг маршрута Jadlis. Ставит голосовой контур один в один с владельцем: диктовка Spokenly (распознавание ElevenLabs scribe_v2, чистка текста через Anthropic claude-sonnet-5, необязательный резерв OpenAI gpt-5.6-sol, десять словарных замен) и необязательная ветка озвучки — тап правого Option читает буфер обмена голосом ElevenLabs.",
+  "author": {
+    "name": "Be Cyborg"
+  },
+  "homepage": "https://github.com/beCyborg/jadlis-voice",
+  "repository": "https://github.com/beCyborg/jadlis-voice",
+  "keywords": [
+    "voice",
+    "dictation",
+    "speech-to-text",
+    "text-to-speech",
+    "spokenly",
+    "elevenlabs",
+    "karabiner",
+    "macos"
+  ]
+}

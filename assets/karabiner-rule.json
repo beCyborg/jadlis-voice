@@ -1,0 +1,36 @@
+{
+  "description": "Tap right_option alone to trigger F18 (ElevenLabs TTS)",
+  "manipulators": [
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "right_option",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "parameters": {
+        "basic.to_if_alone_timeout_milliseconds": 200,
+        "basic.to_if_held_down_threshold_milliseconds": 200
+      },
+      "to": [
+        {
+          "key_code": "right_option",
+          "lazy": true
+        }
+      ],
+      "to_if_alone": [
+        {
+          "shell_command": "export PATH=/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:$PATH LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 && \"$HOME/.local/bin/speak.sh\" &"
+        }
+      ],
+      "to_if_held_down": [
+        {
+          "key_code": "right_option"
+        }
+      ]
+    }
+  ]
+}
