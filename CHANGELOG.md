@@ -2,6 +2,31 @@
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [1.1.0] — 2026-09-28 — чистка текста на Sonnet 5.5 / clean-up on Sonnet 5.5
+
+### Для человека
+- Диктовку теперь чистит Claude Sonnet 5.5 вместо Sonnet 5, по той же цене. На проверочном
+  наборе из 38 трудных диктовок чистых результатов 22 вместо 14, самая длинная диктовка
+  обрабатывается за 6 секунд вместо 25.
+- Модель больше не выполняет просьбы из самой диктовки: «напиши это на английском» остаётся
+  текстом для агента, а не превращается в перевод, и «Нет, я имел в виду» больше не выпадает.
+- Уже настроенный Spokenly сам не меняется: выберите `claude-sonnet-5-5` в провайдере Anthropic
+  в настройках Spokenly или повторите шаг импорта в `/jadlis-voice`.
+
+### For agents
+- Changed: `assets/spokenly-template.plist` — `aiProviders.v1`, провайдер `anthropic`: `model`
+  `claude-sonnet-5` → `claude-sonnet-5-5`; `modes.v2`, «Режим по умолчанию»: `reasoningEffort`
+  `default` → `low`. Остальные ключи не тронуты (сверка по полям с 1.0.0).
+- Changed: id модели в `README.md`, `README.en.md`, `docs/tier/README.md`, `docs/tier/README.en.md`,
+  `skills/jadlis-voice/SKILL.md`, `skills/jadlis-voice/references/keys-and-costs.md` (плюс строка
+  `reasoningEffort`) и в `description` `.claude-plugin/plugin.json`.
+- Refs: бенчмарк 2026-09-28 — 40 диктовок (38 в зачёте) из набора 2026-09-18, штатная обёртка
+  Spokenly + промпт шаблона, вход без словаря замен: `claude-sonnet-5` по умолчанию 14/38
+  (макс. 25,0 с), `claude-sonnet-5-5` по умолчанию 22/38 (8,1 с), с `effort: low` 22/38 (5,9 с).
+  Контроль: `claude-sonnet-5` + промпт v4 lite + `low` = 35/38, как 2026-09-18.
+- Migration: у установленных копий настройки Spokenly остаются прежними; шаблон применяется при
+  следующем импорте (`tools/spokenly-apply.py`).
+
 ## [1.0.0] — 2026-09-10 — первый выпуск: голосовой контур один в один / first release
 
 ### Для человека

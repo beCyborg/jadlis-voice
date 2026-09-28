@@ -20,7 +20,7 @@ Speech goes through two cloud steps and comes back as text in the field your cur
 1. **Speech into the mic** — press right Command, talk, press it again.
 2. **Word replacements** — ten "heard → written" pairs fire before the clean-up (`beforeAI`).
 3. **Transcription** — ElevenLabs `scribe_v2` turns sound into letters, "uhh"s included.
-4. **Clean-up** — Anthropic `claude-sonnet-5` strips the filler and puts the commas in; on a refusal
+4. **Clean-up** — Anthropic `claude-sonnet-5-5` strips the filler and puts the commas in; on a refusal
    the OpenAI `gpt-5.6-sol` fallback takes over, if its key is set.
 5. **Clean text in the active field** — `autoInsert` mode, no clipboard involved.
 

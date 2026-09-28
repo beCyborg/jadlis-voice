@@ -49,7 +49,7 @@ Speech goes through two cloud steps and comes back as text where your cursor is:
 1. **Right Command** — press once and recording starts, press again and the text is in the field (`toggle`).
 2. **Word replacements** — ten pairs fire before the clean-up.
 3. **Transcription** — ElevenLabs `scribe_v2`: sound → letters, "uhh"s included.
-4. **Clean-up** — Anthropic `claude-sonnet-5`; on a refusal the OpenAI `gpt-5.6-sol` fallback takes
+4. **Clean-up** — Anthropic `claude-sonnet-5-5`; on a refusal the OpenAI `gpt-5.6-sol` fallback takes
    over, if a key for it is set.
 5. **Insertion** — the finished text puts itself into the active field.
 

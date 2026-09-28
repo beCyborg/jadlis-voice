@@ -7,7 +7,7 @@
 | Имя | Зачем | Обязателен | Где завести |
 |---|---|---|---|
 | `ELEVENLABS_API_KEY` | распознавание речи (`scribe_v2`) и озвучка буфера | да | https://elevenlabs.io |
-| `ANTHROPIC_API_KEY` | чистка распознанного текста (`claude-sonnet-5`) | да | https://console.anthropic.com |
+| `ANTHROPIC_API_KEY` | чистка распознанного текста (`claude-sonnet-5-5`) | да | https://console.anthropic.com |
 | `OPENAI_API_KEY` | резерв чистки (`gpt-5.6-sol`) | нет | https://platform.openai.com |
 
 Хранение — Связка ключей macOS: generic password, service `jadlis`, account = имя ключа.
@@ -38,8 +38,9 @@
 | Настройка | Значение |
 |---|---|
 | Модель распознавания | `elevenlabs-api` (`scribe_v2`) |
-| Чистка текста | Anthropic → `claude-sonnet-5` |
+| Чистка текста | Anthropic → `claude-sonnet-5-5` |
 | Резерв чистки | OpenAI → `gpt-5.6-sol` (убирается, если ключа нет) |
+| Глубина размышления (`reasoningEffort`) | `low` — модель не раздумывает над длинной диктовкой |
 | Режим вставки | `autoInsert` — текст сам встаёт в активное поле |
 | Горячая клавиша | правый Command, `activationMode: toggle` |
 | Словарь замен | 10 пар, срабатывают до чистки (`beforeAI`) |
