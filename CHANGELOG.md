@@ -2,6 +2,49 @@
 
 Формат: [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [1.2.0] — 2026-10-24 — Haiku 5.5, промпт v4 lite, голос Nikolay, GitLab / Haiku 5.5, prompt v4 lite, voice Nikolay, GitLab
+
+### Для человека
+- Диктовку теперь чистит Claude Haiku 5.5, запасной — GPT-6 Luna. Haiku правит осторожнее,
+  работает примерно вдвое быстрее и стоит в 20 раз дешевле Sonnet 5.5.
+- Корректор получил новый промпт, как у владельца: он не выполняет просьбы из диктовки, не
+  трогает отрицания и числа, сам превращает «Изучу…» в «Изучи…» и знает частые ошибки
+  распознавания. Фраза короче двенадцати слов идёт без чистки.
+- Озвучка читает голосом Nikolay на модели Eleven v4 в темпе ×1.25, как у владельца. Разметка,
+  ссылки и код вслух не читаются, а теги эмоций вроде `[warm]` голос исполняет.
+- Если в буфере ответ в стиле Jadlis Voice (плагин `jadlis-claudecode`), читается только его
+  блок «🔊 Голосом». Новые команды: `speak.sh --file <путь>` и `speak.sh --stop`.
+- Плагин и каталог `jadlis` теперь на GitLab: установка через
+  `https://gitlab.com/beCyborg/jadlis-hub.git`.
+- Уже настроенный Spokenly сам не меняется: повторите шаг импорта в `/jadlis-voice`, а
+  `speak.sh` скопируйте заново (шаг 6).
+
+### For agents
+- Changed: `assets/spokenly-template.plist` — fresh owner export. `aiProviders.v1`: anthropic
+  `claude-sonnet-5-5` → `claude-haiku-5-5`, openai `gpt-5.6-sol` → `gpt-6-luna`; `modes.v2`
+  default mode: `customSystemPrompt` = owner's v4 lite (one personal example neutralised,
+  `PROMPT_FIX`), `prompt` = «Верни очищенное содержимое тега transcript без тега.», `preScript`
+  sets `skip_ai` under 12 words, new keys `smartParagraphs`/`smartSpacing`;
+  `enableSendWithReturnKey` true, `muteWhileRecording` false. Word replacements stay the
+  curated 10.
+- Changed: `tools/spokenly-export.py` — ships only anthropic/openai providers (owner keeps
+  OpenRouter), only the default mode (owner's «TickTick» mode stays home), word replacements
+  from `--replacements-from` (default: the current template), `fileTranscriptionVoiceModelID`
+  forced to `elevenlabs-api` (owner: local `parakeetUltra`).
+- Changed: `tools/spokenly-apply.py` `--keys-from-live` skips provider types it does not ship.
+- Changed: `docs/prompt.txt` — the v4 lite prompt the template carries.
+- Changed: `assets/speak.sh` — `eleven_v4`, voice `3EuKHIEZbSzrHGNmdYsx`, stability 0,
+  similarity 0.85, seed 4242, `apply_text_normalization: on`, `language_code: ru`, sox
+  `tempo 1.25` (`SPEAK_TEMPO`); inline cleaner (markdown, links, code, emoji, v4 tags kept, sound
+  tags dropped), `🔊 Голосом` block cut, chunks ≤10 000 chars at sentence ends; `--file`,
+  `--stop`; stop kills the whole group only when it is not the caller's own.
+- Changed: `.github/workflows/ci.yml` → `.gitlab-ci.yml` (hub `/ci/plugin-ci.yml`); hub and repo
+  links → `gitlab.com/beCyborg/*`; models in READMEs, `docs/tier/*`, `SKILL.md`,
+  `references/keys-and-costs.md`, `plugin.json`; `version` 1.1.0 → 1.2.0.
+- Refs: corrector re-bench 2026-10-11 (vault note «Spokenly — тест распознавания и корректора
+  2026-09», § Haiku 5.5): 36/35/35 of 38 hard cases, 6 harmless edits on 44 recordings,
+  median 1.8 s, ~$0.0007 per dictation.
+
 ## [1.1.0] — 2026-09-28 — чистка текста на Sonnet 5.5 / clean-up on Sonnet 5.5
 
 ### Для человека

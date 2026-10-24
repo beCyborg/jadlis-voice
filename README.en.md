@@ -6,7 +6,7 @@ You speak out loud, a second model strips the "uhh"s and the filler, and the fin
 in the field your cursor is in. Copied text is read back to you by a tap on a single key.
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 ```
 
@@ -49,13 +49,14 @@ Speech goes through two cloud steps and comes back as text where your cursor is:
 1. **Right Command** — press once and recording starts, press again and the text is in the field (`toggle`).
 2. **Word replacements** — ten pairs fire before the clean-up.
 3. **Transcription** — ElevenLabs `scribe_v2`: sound → letters, "uhh"s included.
-4. **Clean-up** — Anthropic `claude-sonnet-5-5`; on a refusal the OpenAI `gpt-5.6-sol` fallback takes
-   over, if a key for it is set.
+4. **Clean-up** — Anthropic `claude-haiku-5-5`; on a refusal the OpenAI `gpt-6-luna` fallback takes
+   over, if a key for it is set. A phrase shorter than twelve words skips the clean-up: there is nothing to fix.
 5. **Insertion** — the finished text puts itself into the active field.
 
 The optional second branch is read-aloud: a Karabiner rule catches a tap on right Option, `speak.sh`
-takes the clipboard and reads it in an ElevenLabs voice, and `play` from the sox package puts the
-sound out.
+takes the clipboard and reads it in the voice Nikolay (ElevenLabs Eleven v4) at ×1.25, and `play`
+from the sox package puts the sound out. If the clipboard holds a Jadlis Voice answer (plugin
+`jadlis-claudecode`), only its «🔊 Голосом» block is read.
 
 The full walkthrough is [docs/tier/README.en.md](docs/tier/README.en.md); the corrector prompt in
 full is [docs/prompt.txt](docs/prompt.txt).
@@ -67,7 +68,7 @@ full is [docs/prompt.txt](docs/prompt.txt).
 ```
 You are the installer. Put the jadlis-voice plugin from the jadlis marketplace on this Mac.
 Run exactly these commands, verbatim, abbreviating nothing:
-1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+1. claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 2. claude plugin install jadlis-voice@jadlis
 3. claude plugin list — show me the jadlis-voice line and its version.
 Then tell me in one line: type /jadlis-voice — the plugin walks the rest of the steps itself.
@@ -81,7 +82,7 @@ If a command returns an error — stop, show the output, do not go on to the nex
 **b) The commands by hand.**
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 claude plugin list
 ```
@@ -122,7 +123,7 @@ up in the agent's replies.
 
 **What it does not do.** It does not create accounts for you and does not fill in forms — it hands
 you the link and you sign up. It does not translate, does not summarize and does not cut more than
-a third of the words — this is a clean-up, not a rewrite. It does not work offline: the voice goes
+a fifth of the words — this is a clean-up, not a rewrite. It does not work offline: the voice goes
 to ElevenLabs and the text to Anthropic. It does not exist outside macOS. Spokenly also has an
 iPhone app, but its setup there is its own and separate.
 

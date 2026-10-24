@@ -6,7 +6,7 @@
 в поле, где стоит курсор. Скопированный текст читается вслух по тапу одной клавиши.
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 ```
 
@@ -47,12 +47,14 @@ claude plugin install jadlis-voice@jadlis
 1. **Правый Command** — нажал один раз: пошла запись, нажал второй: текст в поле (`toggle`).
 2. **Словарь замен** — десять пар срабатывают ещё до чистки.
 3. **Распознавание** — ElevenLabs `scribe_v2`: звук → буквы, со всеми «э-э-э».
-4. **Чистка** — Anthropic `claude-sonnet-5-5`; при отказе подхватывает резерв OpenAI `gpt-5.6-sol`,
-   если ключ для него заведён.
+4. **Чистка** — Anthropic `claude-haiku-5-5`; при отказе подхватывает резерв OpenAI `gpt-6-luna`,
+   если ключ для него заведён. Фраза короче двенадцати слов идёт без чистки: там нечего править.
 5. **Вставка** — готовый текст встаёт в активное поле сам.
 
 Необязательная вторая ветка — озвучка: правило Karabiner ловит тап правого Option, `speak.sh`
-берёт буфер обмена и читает его голосом ElevenLabs, звук выводит `play` из пакета sox.
+берёт буфер обмена и читает его голосом Nikolay (ElevenLabs Eleven v4) в темпе ×1.25, звук выводит
+`play` из пакета sox. Если в буфере ответ в стиле Jadlis Voice (плагин `jadlis-claudecode`), читается
+только его блок «🔊 Голосом».
 
 Подробный разбор — [docs/tier/README.md](docs/tier/README.md), промпт корректора целиком —
 [docs/prompt.txt](docs/prompt.txt).
@@ -64,7 +66,7 @@ claude plugin install jadlis-voice@jadlis
 ```
 Ты — установщик. Поставь на этот Mac плагин jadlis-voice из маркетплейса jadlis.
 Выполни ровно эти команды, дословно, ничего не сокращая:
-1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+1. claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 2. claude plugin install jadlis-voice@jadlis
 3. claude plugin list — покажи мне строку про jadlis-voice и его версию.
 Потом скажи мне одной строкой: набери /jadlis-voice — дальше плагин ведёт по шагам сам.
@@ -78,7 +80,7 @@ claude plugin install jadlis-voice@jadlis
 **б) Команды руками.**
 
 ```
-claude plugin marketplace add https://github.com/beCyborg/jadlis-hub
+claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 claude plugin list
 ```
@@ -118,7 +120,7 @@ Claude сюда не подходит. Необязательно: ключ **Op
 ## Границы, стоимость, обновление
 
 **Чего не делает.** Не заводит за тебя аккаунты и не заполняет формы — даёт ссылку, регистрируешься
-сам. Не переводит, не пересказывает и не сокращает больше чем на треть — это чистка, а не
+сам. Не переводит, не пересказывает и не сокращает больше чем на пятую часть — это чистка, а не
 переписывание. Не работает без интернета: голос уходит в ElevenLabs, текст — в Anthropic.
 Не существует вне macOS. Приложение Spokenly есть и на iPhone, но настройка там своя и отдельная.
 

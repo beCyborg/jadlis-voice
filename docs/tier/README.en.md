@@ -20,8 +20,9 @@ Speech goes through two cloud steps and comes back as text in the field your cur
 1. **Speech into the mic** — press right Command, talk, press it again.
 2. **Word replacements** — ten "heard → written" pairs fire before the clean-up (`beforeAI`).
 3. **Transcription** — ElevenLabs `scribe_v2` turns sound into letters, "uhh"s included.
-4. **Clean-up** — Anthropic `claude-sonnet-5-5` strips the filler and puts the commas in; on a refusal
-   the OpenAI `gpt-5.6-sol` fallback takes over, if its key is set.
+4. **Clean-up** — Anthropic `claude-haiku-5-5` strips the filler and puts the commas in; on a refusal
+   the OpenAI `gpt-6-luna` fallback takes over, if its key is set. A phrase shorter than twelve words
+   skips the clean-up via the pre-AI script (`preScript`).
 5. **Clean text in the active field** — `autoInsert` mode, no clipboard involved.
 
 <details>
@@ -41,7 +42,9 @@ Meaning, tone and the "yet" survive; the hesitations, "like", "basically" and th
 
 The second, optional branch is read-aloud: copy some text, tap right Option, listen; tap again and
 it stops. Karabiner-Elements holds the key-interception rule, `speak.sh` reads it out through
-ElevenLabs, and `play` from the sox package puts the sound out.
+ElevenLabs (voice Nikolay, model Eleven v4, ×1.25), and `play` from the sox package puts the sound out.
+Before sending, `speak.sh` strips markup, links and code and keeps emotion tags such as `[warm]`.
+In a Jadlis Voice answer only the «🔊 Голосом» block is read.
 
 ## What is inside the plugin
 
@@ -84,7 +87,7 @@ Two paid accounts are required and a third is optional; every key is your own.
 - **Everything goes to the cloud:** speech to ElevenLabs, text to Anthropic (OpenAI as fallback).
   This route does not work offline; do not dictate anything you cannot send out.
 - **macOS only.** Spokenly also exists on the iPhone, but the setup there is its own and separate.
-- **What it does not do:** no translation, no summarizing, no cutting more than a third of the
+- **What it does not do:** no translation, no summarizing, no cutting more than a fifth of the
   words. Misheard names are fixed only by the replacement dictionary.
 
 Spokenly is third-party freeware with an optional Pro subscription; its authors have nothing to do

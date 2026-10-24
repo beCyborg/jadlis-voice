@@ -7,8 +7,8 @@
 | Имя | Зачем | Обязателен | Где завести |
 |---|---|---|---|
 | `ELEVENLABS_API_KEY` | распознавание речи (`scribe_v2`) и озвучка буфера | да | https://elevenlabs.io |
-| `ANTHROPIC_API_KEY` | чистка распознанного текста (`claude-sonnet-5-5`) | да | https://console.anthropic.com |
-| `OPENAI_API_KEY` | резерв чистки (`gpt-5.6-sol`) | нет | https://platform.openai.com |
+| `ANTHROPIC_API_KEY` | чистка распознанного текста (`claude-haiku-5-5`) | да | https://console.anthropic.com |
+| `OPENAI_API_KEY` | резерв чистки (`gpt-6-luna`) | нет | https://platform.openai.com |
 
 Хранение — Связка ключей macOS: generic password, service `jadlis`, account = имя ключа.
 Тот же стандарт, что у `jadlis-search` (`scripts/secret.sh`). Пишет ключ `scripts/keys.sh set`:
@@ -38,8 +38,10 @@
 | Настройка | Значение |
 |---|---|
 | Модель распознавания | `elevenlabs-api` (`scribe_v2`) |
-| Чистка текста | Anthropic → `claude-sonnet-5-5` |
-| Резерв чистки | OpenAI → `gpt-5.6-sol` (убирается, если ключа нет) |
+| Чистка текста | Anthropic → `claude-haiku-5-5` |
+| Резерв чистки | OpenAI → `gpt-6-luna` (убирается, если ключа нет) |
+| Промпт чистки | свой системный промпт корректора (`customSystemPrompt`), текст — `docs/prompt.txt` |
+| Короткие фразы | меньше 12 слов идут без чистки (`preScript` ставит `skip_ai`) |
 | Глубина размышления (`reasoningEffort`) | `low` — модель не раздумывает над длинной диктовкой |
 | Режим вставки | `autoInsert` — текст сам встаёт в активное поле |
 | Горячая клавиша | правый Command, `activationMode: toggle` |
@@ -80,5 +82,15 @@ Spokenly перетирается его собственной записью. 
 
 **Уведомление про ключ.** В Связке нет `ELEVENLABS_API_KEY`. Запасной путь — старая запись
 service `elevenlabs`, account = имя пользователя; её скрипт тоже читает.
+
+**Голос и темп.** Голос Nikolay (`3EuKHIEZbSzrHGNmdYsx`), модель `eleven_v4`, темп ×1.25 на
+воспроизведении — v3 и v4 параметр `speed` игнорируют. Переопределить: `SPEAK_VOICE_ID`,
+`SPEAK_MODEL_ID`, `SPEAK_TEMPO` в окружении.
+
+**Читается не весь ответ.** Так и задумано для стиля Jadlis Voice: если в тексте есть строка
+«🔊 Голосом», читается только то, что ниже неё. Код, таблицы-разделители, ссылки и эмодзи не
+читаются никогда.
+
+**Остановить из терминала.** `speak.sh --stop`; прочитать файл — `speak.sh --file <путь>`.
 
 **Лог** — `$TMPDIR/jadlis-speak.log`. Значений ключей в него не попадает.

@@ -72,8 +72,10 @@ def mask(tpl: dict, secrets: list) -> str:
 def keys_from_live(path: str) -> dict:
     live = plistlib.load(open(path, "rb"))
     out = {"ELEVENLABS_API_KEY": json.loads(live["dictationCredential.elevenlabs-api.v1"])["envelope"]["value"]["key"]}
+    names = {"anthropic": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY"}
     for item in json.loads(live["aiProviders.v1"])["envelope"]["items"]:
-        out[{"anthropic": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY"}[item["value"]["type"]]] = item["value"]["provider"]["key"]
+        if item["value"]["type"] in names:  # the owner also keeps providers the template does not ship
+            out[names[item["value"]["type"]]] = item["value"]["provider"]["key"]
     return out
 
 
