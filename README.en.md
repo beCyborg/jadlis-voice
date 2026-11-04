@@ -55,8 +55,8 @@ Speech goes through two cloud steps and comes back as text where your cursor is:
 
 The optional second branch is read-aloud: a Karabiner rule catches a tap on right Option, `speak.sh`
 takes the clipboard and reads it in the voice Nikolay (ElevenLabs Eleven v4) at ×1.25, and `play`
-from the sox package puts the sound out. If the clipboard holds a Jadlis Voice answer (plugin
-`jadlis-claudecode`), only its «🔊 Голосом» block is read.
+from the sox package puts the sound out. If the clipboard holds a Jadlis Voice answer (repo
+[`jadlis-output-styles`](https://github.com/becyb-org/jadlis-output-styles)), only its «🔊 Голосом» block is read.
 
 The full walkthrough is [docs/tier/README.en.md](docs/tier/README.en.md); the corrector prompt in
 full is [docs/prompt.txt](docs/prompt.txt).

@@ -53,7 +53,7 @@ claude plugin install jadlis-voice@jadlis
 
 Необязательная вторая ветка — озвучка: правило Karabiner ловит тап правого Option, `speak.sh`
 берёт буфер обмена и читает его голосом Nikolay (ElevenLabs Eleven v4) в темпе ×1.25, звук выводит
-`play` из пакета sox. Если в буфере ответ в стиле Jadlis Voice (плагин `jadlis-claudecode`), читается
+`play` из пакета sox. Если в буфере ответ в стиле Jadlis Voice (репо [`jadlis-output-styles`](https://github.com/becyb-org/jadlis-output-styles)), читается
 только его блок «🔊 Голосом».
 
 Подробный разбор — [docs/tier/README.md](docs/tier/README.md), промпт корректора целиком —
