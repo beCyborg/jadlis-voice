@@ -6,7 +6,7 @@ You speak out loud, a second model strips the "uhh"s and the filler, and the fin
 in the field your cursor is in. Copied text is read back to you by a tap on a single key.
 
 ```
-claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 ```
 
@@ -56,7 +56,7 @@ Speech goes through two cloud steps and comes back as text where your cursor is:
 The optional second branch is read-aloud: a Karabiner rule catches a tap on right Option, `speak.sh`
 takes the clipboard and reads it in the voice Nikolay (ElevenLabs Eleven v4) at ×1.25, and `play`
 from the sox package puts the sound out. If the clipboard holds a Jadlis Voice answer (repo
-[`jadlis-output-styles`](https://github.com/becyb-org/jadlis-output-styles)), only its «🔊 Голосом» block is read.
+[`jadlis-output-styles`](https://github.com/beCyborg/jadlis-output-styles)), only its «🔊 Голосом» block is read.
 
 The full walkthrough is [docs/tier/README.en.md](docs/tier/README.en.md); the corrector prompt in
 full is [docs/prompt.txt](docs/prompt.txt).
@@ -68,7 +68,7 @@ full is [docs/prompt.txt](docs/prompt.txt).
 ```
 You are the installer. Put the jadlis-voice plugin from the jadlis marketplace on this Mac.
 Run exactly these commands, verbatim, abbreviating nothing:
-1. claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
+1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub.git
 2. claude plugin install jadlis-voice@jadlis
 3. claude plugin list — show me the jadlis-voice line and its version.
 Then tell me in one line: type /jadlis-voice — the plugin walks the rest of the steps itself.
@@ -82,7 +82,7 @@ If a command returns an error — stop, show the output, do not go on to the nex
 **b) The commands by hand.**
 
 ```
-claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 claude plugin list
 ```

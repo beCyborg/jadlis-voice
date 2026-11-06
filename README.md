@@ -6,7 +6,7 @@
 в поле, где стоит курсор. Скопированный текст читается вслух по тапу одной клавиши.
 
 ```
-claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 ```
 
@@ -53,7 +53,7 @@ claude plugin install jadlis-voice@jadlis
 
 Необязательная вторая ветка — озвучка: правило Karabiner ловит тап правого Option, `speak.sh`
 берёт буфер обмена и читает его голосом Nikolay (ElevenLabs Eleven v4) в темпе ×1.25, звук выводит
-`play` из пакета sox. Если в буфере ответ в стиле Jadlis Voice (репо [`jadlis-output-styles`](https://github.com/becyb-org/jadlis-output-styles)), читается
+`play` из пакета sox. Если в буфере ответ в стиле Jadlis Voice (репо [`jadlis-output-styles`](https://github.com/beCyborg/jadlis-output-styles)), читается
 только его блок «🔊 Голосом».
 
 Подробный разбор — [docs/tier/README.md](docs/tier/README.md), промпт корректора целиком —
@@ -66,7 +66,7 @@ claude plugin install jadlis-voice@jadlis
 ```
 Ты — установщик. Поставь на этот Mac плагин jadlis-voice из маркетплейса jadlis.
 Выполни ровно эти команды, дословно, ничего не сокращая:
-1. claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
+1. claude plugin marketplace add https://github.com/beCyborg/jadlis-hub.git
 2. claude plugin install jadlis-voice@jadlis
 3. claude plugin list — покажи мне строку про jadlis-voice и его версию.
 Потом скажи мне одной строкой: набери /jadlis-voice — дальше плагин ведёт по шагам сам.
@@ -80,7 +80,7 @@ claude plugin install jadlis-voice@jadlis
 **б) Команды руками.**
 
 ```
-claude plugin marketplace add https://gitlab.com/beCyborg/jadlis-hub.git
+claude plugin marketplace add https://github.com/beCyborg/jadlis-hub.git
 claude plugin install jadlis-voice@jadlis
 claude plugin list
 ```
